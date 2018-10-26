@@ -6,7 +6,6 @@ function finish {
     echo ""
     echo "Computer WILL sleep now on a lid close event."
 }
-trap finish EXIT
 
 echo "Disabling sleep requires an administrator password."
-sudo pmset -b disablesleep 1 && echo "Computer will NOT sleep now on a lid close event." && echo "You can now unplug safely and then press CTRL+C after." && while true; do sleep 10000; done
+sudo pmset -b disablesleep 1 && trap finish EXIT && echo "Computer will NOT sleep now on a lid close event." && echo "You can now unplug safely and then press CTRL+C after." && while true; do sleep 10000; done
